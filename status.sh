@@ -48,4 +48,6 @@ context=""
 $HELM_BIN status $@
 echo;echo
 $HELM_BIN get manifest $release | \
-        kubectl get $context --namespace $HELM_NAMESPACE -f -
+        kubectl get $context --namespace $HELM_NAMESPACE -f - && \
+        echo && \
+        kubectl get pods --namespace $HELM_NAMESPACE -l release=$release
